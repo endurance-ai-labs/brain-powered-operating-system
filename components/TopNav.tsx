@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { asset } from "@/lib/base";
 
 const LINKS = [
   { href: "/brain", label: "The Brain" },
@@ -18,7 +19,7 @@ export default function TopNav() {
       <div className="topnav-inner">
         <Link href="/" className="brand">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="logo" />
+          <img src={asset("/logo-endurance-white.svg")} alt="Endurance AI Labs" className="logo" />
           <span className="divider-v" />
           <span className="brand-sub">Brain OS</span>
         </Link>

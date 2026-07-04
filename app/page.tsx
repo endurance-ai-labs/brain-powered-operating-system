@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import TopNav from "@/components/TopNav";
 import BrainBubble from "@/components/BrainBubble";
 import { MODULES, ACTIVITY, COMPANY } from "@/lib/data";
+import { asset } from "@/lib/base";
 
 const MODULE_HUE: Record<string, string> = {
   Ella: "Conversations", Logistics: "Operations", Commissions: "Commissions",
@@ -274,7 +275,7 @@ export default function Landing() {
       <footer className="footer">
         <div className="footer-inner">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="logo" />
+          <img src={asset("/logo-endurance-white.svg")} alt="Endurance AI Labs" className="logo" />
           <div className="fmeta">One brain connecting every system in your company.</div>
           <div className="fmeta">© 2026 · An Endurance AI Labs product</div>
         </div>
