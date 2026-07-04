@@ -32,6 +32,9 @@ export default function TopNav() {
               </Link>
             );
           })}
+          <Link href="/console" className={`console-tab${path.startsWith("/console") ? " active" : ""}`}>
+            Console ↗
+          </Link>
         </nav>
         <div className="nav-spacer" />
         <div className="nav-right">

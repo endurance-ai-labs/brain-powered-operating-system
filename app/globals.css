@@ -375,6 +375,49 @@ table.tbl { width: 100%; border-collapse: collapse; }
 .suggest button:hover { background: var(--ink-900); color: var(--signal); }
 
 /* ============================================================
+   Console — "Today with your Brain" command center
+   ============================================================ */
+.con-banner {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 11px 16px; border: 1px solid var(--steel-800); border-radius: 2px;
+  background: var(--ink-950); font-family: var(--font-mono); font-size: 12px; color: var(--steel-400);
+}
+.con-banner .pill { font-size: 10px; font-weight: 500; letter-spacing: .14em; color: var(--ink); background: var(--signal); border-radius: 2px; padding: 3px 8px; }
+.con-banner b { color: var(--bone); font-weight: 500; }
+.con-banner .out { margin-left: auto; color: var(--signal); }
+
+.con-stats { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 1px; background: var(--steel-800); border: 1px solid var(--steel-800); border-radius: 2px; }
+@media (max-width: 1000px) { .con-stats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .con-stats { grid-template-columns: 1fr; } }
+.con-stat { background: var(--ink-950); padding: 22px; }
+.con-stat .k { font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-400); display: flex; align-items: center; gap: 7px; }
+.con-stat .v { font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--bone); margin-top: 12px; }
+.con-stat .cap { font-size: 12.5px; color: var(--steel-500); margin-top: 8px; }
+.con-stat.memory { background: linear-gradient(165deg, #1a1f38, #12162a); position: relative; overflow: hidden; border-left: 1px solid rgba(199,167,108,.25); }
+.con-stat.memory::before { content: ""; position: absolute; top: -40%; right: -20%; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(199,167,108,.14), transparent 70%); }
+.con-stat.memory .k { color: var(--signal); }
+.con-stat.memory .v { color: var(--signal); font-size: 34px; }
+.con-stat.memory .barline { margin: 16px 0 10px; }
+
+.con-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; margin-top: 20px; }
+@media (max-width: 980px) { .con-grid { grid-template-columns: 1fr; } }
+.con-act { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--signal); white-space: nowrap; }
+.con-need .dot { flex: 0 0 auto; }
+.con-up-row { display: flex; align-items: flex-start; gap: 13px; padding: 14px 22px; border-top: 1px solid var(--steel-800); }
+.con-up-row .av { width: 30px; height: 30px; border-radius: 2px; flex: 0 0 auto; display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px; background: var(--ink-900); border: 1px solid var(--steel-700); color: var(--signal); }
+.con-up-row .t { font-size: 13.5px; color: var(--bone); font-weight: 500; }
+.con-up-row .s { font-size: 12px; color: var(--steel-500); margin-top: 3px; line-height: 1.5; }
+.con-ans { padding: 16px 22px; border-top: 1px solid var(--steel-800); }
+.con-ans .q { font-size: 14px; color: var(--bone); font-weight: 500; display: flex; gap: 9px; }
+.con-ans .a { font-size: 13px; color: var(--steel-400); margin-top: 7px; line-height: 1.6; }
+.con-ans .a strong { color: var(--steel-200); font-weight: 600; }
+.con-ans .cite { font-family: var(--font-mono); font-size: 11px; color: var(--signal); margin-top: 9px; display: flex; flex-wrap: wrap; gap: 5px 14px; }
+
+/* gold Console nav tab */
+.nav-links a.console-tab { color: var(--signal); }
+.nav-links a.console-tab:hover { color: var(--signal-100); }
+
+/* ============================================================
    Floating Brain bubble (terminal style)
    ============================================================ */
 .bbl-fab {
