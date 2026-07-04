@@ -1,9 +1,9 @@
-import { Radio, Truck, AlertTriangle, MapPin, DollarSign, ArrowUpRight } from "lucide-react";
+import { Truck, AlertTriangle, MapPin, DollarSign } from "lucide-react";
 import { LOADS, customer, type LoadStatus } from "@/lib/data";
 import { usd, pct } from "@/lib/format";
 
 const STATUS: Record<LoadStatus, string> = {
-  Delivered: "ok", "In transit": "accent", "At pickup": "neutral", "Running late": "bad", Booked: "neutral", "Needs cover": "warn",
+  Delivered: "good", "In transit": "signal", "At pickup": "steel", "Running late": "bad", Booked: "steel", "Needs cover": "warn",
 };
 
 export default function LogisticsPage() {
@@ -13,40 +13,42 @@ export default function LogisticsPage() {
   const attention = LOADS.filter((l) => l.status === "Running late" || l.status === "Needs cover");
 
   return (
-    <div className="page page-wide">
+    <div className="page">
       <div className="crumb">Operations <b>/ Mission Control · live board</b></div>
       <h1 className="title">Operations</h1>
-      <p className="lede">
+      <p className="intro">
         The living operations map — every load from quote to cash. What needs attention right now is at the top, the
         economics update in real time, and every event ripples into Commissions, Conversations, and the Brain.
       </p>
 
       <div className="grid cols-4 mt-lg">
-        <div className="kpi"><span className="lab"><Truck size={14} /> Active loads</span><span className="big">{LOADS.length}</span></div>
-        <div className="kpi"><span className="lab"><DollarSign size={14} /> Revenue on board</span><span className="big">{usd(revenue)}</span></div>
-        <div className="kpi"><span className="lab"><DollarSign size={14} /> Margin</span><span className="big">{usd(margin)}</span><span className="small muted" style={{ marginTop: 4 }}>{pct((margin / revenue) * 100)} of revenue</span></div>
-        <div className="kpi"><span className="lab"><AlertTriangle size={14} color="var(--bad)" /> Need attention</span><span className="big" style={{ color: "var(--bad)" }}>{attention.length}</span></div>
+        <div className="kpi"><span className="lab"><Truck size={14} /> Active loads</span><div className="big">{LOADS.length}</div></div>
+        <div className="kpi"><span className="lab"><DollarSign size={14} /> Revenue on board</span><div className="big">{usd(revenue)}</div></div>
+        <div className="kpi"><span className="lab"><DollarSign size={14} /> Margin</span><div className="big">{usd(margin)}</div><div className="sub">{pct((margin / revenue) * 100)} of revenue</div></div>
+        <div className="kpi"><span className="lab"><AlertTriangle size={14} color="var(--rust)" /> Need attention</span><div className="big" style={{ color: "var(--rust)" }}>{attention.length}</div></div>
       </div>
 
       {/* needs attention */}
-      <div className="card" style={{ marginTop: 18 }}>
-        <div className="card-h"><h2>Needs attention now</h2><span className="sub">Triaged by the OS</span></div>
+      <div className="panel" style={{ marginTop: 20 }}>
+        <div className="panel-h"><h2>Needs attention now</h2><span className="sub">Triaged by the OS</span></div>
         <div>
           {attention.map((l) => {
             const cust = customer(l.customerId);
             return (
-              <div key={l.id} className="between" style={{ padding: "14px 20px", borderBottom: "1px solid var(--line)" }}>
+              <div key={l.id} className="between" style={{ padding: "14px 22px", borderBottom: "1px solid var(--steel-800)" }}>
                 <div>
                   <div className="flex" style={{ gap: 9 }}>
-                    <span className="mono" style={{ fontWeight: 700, fontSize: 13 }}>{l.id}</span>
-                    <span className={`chip ${STATUS[l.status]}`}>{l.status}</span>
-                    <span style={{ fontWeight: 650, fontSize: 13.5 }}>{cust?.name}</span>
+                    <span className="code">{l.id}</span>
+                    <span className={`tag ${STATUS[l.status]}`}>{l.status}</span>
+                    <span style={{ color: "var(--bone)", fontWeight: 500, fontSize: 14 }}>{cust?.name}</span>
                   </div>
-                  <div className="small muted" style={{ marginTop: 4 }}><MapPin size={11} style={{ verticalAlign: "-1px" }} /> {l.lane} · {l.equipment} · {l.broker}</div>
+                  <div className="small muted mono" style={{ marginTop: 6 }}>
+                    <MapPin size={11} color="var(--steel-400)" style={{ display: "inline", verticalAlign: "-1px" }} /> {l.lane} · {l.equipment} · {l.broker}
+                  </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontWeight: 700, fontSize: 13.5 }}>{l.eta}</div>
-                  <div className="small muted">{l.carrier ?? "No carrier yet"}</div>
+                  <div style={{ color: "var(--bone)", fontSize: 14 }}>{l.eta}</div>
+                  <div className="small muted mono">{l.carrier ?? "No carrier yet"}</div>
                 </div>
               </div>
             );
@@ -55,8 +57,8 @@ export default function LogisticsPage() {
       </div>
 
       {/* full board */}
-      <div className="card" style={{ marginTop: 18 }}>
-        <div className="card-h"><h2>Live load board</h2><span className="sub">All {LOADS.length} loads</span></div>
+      <div className="panel" style={{ marginTop: 20 }}>
+        <div className="panel-h"><h2>Live load board</h2><span className="sub">All {LOADS.length} loads</span></div>
         <table className="tbl">
           <thead>
             <tr>
@@ -70,14 +72,14 @@ export default function LogisticsPage() {
               const m = l.revenue - l.cost;
               return (
                 <tr key={l.id}>
-                  <td className="mono" style={{ fontWeight: 650 }}>{l.id}</td>
-                  <td className="tname">{cust?.name}</td>
+                  <td className="code">{l.id}</td>
+                  <td className="nm">{cust?.name}</td>
                   <td className="muted small">{l.lane}</td>
                   <td className="muted">{l.equipment}</td>
                   <td className="muted small">{l.carrier ?? "—"}</td>
                   <td className="num">{usd(l.revenue)}</td>
-                  <td className="num" style={{ color: m > 0 ? "var(--good)" : "var(--muted)" }}>{m > 0 ? usd(m) : "—"}</td>
-                  <td><span className={`chip ${STATUS[l.status]}`}>{l.status}</span></td>
+                  <td className="num" style={{ color: m > 0 ? "var(--signal)" : "var(--steel-500)" }}>{m > 0 ? usd(m) : "—"}</td>
+                  <td><span className={`tag ${STATUS[l.status]}`}>{l.status}</span></td>
                 </tr>
               );
             })}
@@ -85,8 +87,8 @@ export default function LogisticsPage() {
         </table>
       </div>
 
-      <div className="card card-p" style={{ marginTop: 18, background: "var(--accent-soft)", borderColor: "var(--accent-line)" }}>
-        <p className="small" style={{ color: "var(--ink-2)" }}>
+      <div className="callout" style={{ marginTop: 20 }}>
+        <p>
           <strong>Synchronized:</strong> load <span className="mono">M-80511</span> was created automatically from Ella&apos;s
           inbound Bluepeak call, and <span className="mono">M-80422</span> running late triggered the Westview escalation
           you see in Conversations — and a hold in Commissions. One board, wired to everything.
