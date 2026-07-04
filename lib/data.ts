@@ -184,8 +184,8 @@ export const ACTIVITY: Activity[] = [
 export const MODULES = [
   { key: "brain", name: "The Brain", href: "/brain", tag: "Nervous system",
     blurb: "Ask anything about your company in plain English. The Brain reads every other system and answers with sources." },
-  { key: "conversations", name: "Conversations", href: "/conversations", tag: "Ella",
-    blurb: "Every customer call, video meeting, and in-person conversation — captured, transcribed, and remembered forever." },
+  { key: "conversations", name: "Conversations", href: "/conversations", tag: "Remi",
+    blurb: "Every customer call, video meeting, and in-person conversation — captured, transcribed, and remembered forever by Remi." },
   { key: "commissions", name: "Commissions", href: "/commissions", tag: "Payline",
     blurb: "Turn load data into a clean weekly pay run — splits, pools, reconciliation, statements, settled to the penny." },
   { key: "logistics", name: "Operations", href: "/logistics", tag: "Mission Control",
@@ -193,6 +193,33 @@ export const MODULES = [
   { key: "analytics", name: "Analytics", href: "/analytics", tag: "Business health",
     blurb: "Revenue, margin, growth, and customer concentration — the health of the whole business at a glance." },
 ] as const;
+
+/* ---------- Remi (conversation-intelligence product, formerly Ella) ---------- */
+export const REMI_URL = "https://endurancelabs.ai/remi/";
+
+/* ---------- Geo: approx lat/lng for every city in the load lanes ---------- */
+export const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
+  "Birmingham, AL": { lat: 33.52, lng: -86.81 },
+  "Charlotte, NC": { lat: 35.23, lng: -80.84 },
+  "Salinas, CA": { lat: 36.68, lng: -121.66 },
+  "Dallas, TX": { lat: 32.78, lng: -96.8 },
+  "Cleveland, OH": { lat: 41.5, lng: -81.69 },
+  "Atlanta, GA": { lat: 33.75, lng: -84.39 },
+  "Houston, TX": { lat: 29.76, lng: -95.37 },
+  "Phoenix, AZ": { lat: 33.45, lng: -112.07 },
+  "Memphis, TN": { lat: 35.15, lng: -90.05 },
+  "Columbus, OH": { lat: 39.96, lng: -82.99 },
+  "High Point, NC": { lat: 35.96, lng: -80.0 },
+  "Boston, MA": { lat: 42.36, lng: -71.06 },
+  "Denver, CO": { lat: 39.74, lng: -104.99 },
+  "Oklahoma City, OK": { lat: 35.47, lng: -97.52 },
+};
+
+/** Project a lat/lng to x/y in a [0..w] x [0..h] box over the continental US. */
+export const project = (lng: number, lat: number, w: number, h: number, pad = 24) => ({
+  x: pad + ((lng - -125) / (-66 - -125)) * (w - pad * 2),
+  y: pad + ((49 - lat) / (49 - 24)) * (h - pad * 2),
+});
 
 /* ---------- helpers ---------- */
 export const customer = (id: string) => CUSTOMERS.find((c) => c.id === id);

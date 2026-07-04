@@ -1,5 +1,5 @@
 import { Phone, Video, Users, MessageSquare, ArrowUpRight, Bell, Clock } from "lucide-react";
-import { CONVERSATIONS, CUSTOMERS, customer, type Channel } from "@/lib/data";
+import { CONVERSATIONS, CUSTOMERS, customer, REMI_URL, type Channel } from "@/lib/data";
 import { usd } from "@/lib/format";
 
 const CH_ICON: Record<Channel, React.ElementType> = {
@@ -19,13 +19,20 @@ export default function ConversationsPage() {
 
   return (
     <div className="page">
-      <div className="crumb">Conversations <b>/ Ella · captured today</b></div>
-      <h1 className="title">Conversations</h1>
-      <p className="intro">
-        Every customer conversation — phone, video, and in person — captured, transcribed, and remembered. Ella
-        files each one against the right customer and opens the follow-ups, so nothing slips and the Brain remembers
-        everything.
-      </p>
+      <div className="crumb">Conversations <b>/ Remi · captured today</b></div>
+      <div className="between" style={{ alignItems: "flex-end", gap: 20, flexWrap: "wrap" }}>
+        <div>
+          <h1 className="title">Conversations</h1>
+          <p className="intro">
+            Every customer conversation — phone, video, and in person — captured, transcribed, and remembered by{" "}
+            <b style={{ color: "var(--bone)", fontWeight: 500 }}>Remi</b>. It files each one against the right customer and
+            opens the follow-ups, so nothing slips and the Brain remembers everything.
+          </p>
+        </div>
+        <a href={REMI_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm" style={{ flexShrink: 0 }}>
+          Open the live Remi product <ArrowUpRight size={15} />
+        </a>
+      </div>
 
       <div className="grid cols-4 mt-lg">
         <div className="kpi"><span className="lab"><MessageSquare size={14} /> Captured today</span><span className="big">{captured}</span></div>
@@ -103,7 +110,7 @@ export default function ConversationsPage() {
               <strong style={{ fontSize: 13.5, color: "var(--signal)" }}>Every channel, one memory</strong>
             </div>
             <p style={{ marginTop: 8 }}>
-              Phone, Zoom, Teams, Google Meet, and in-person all flow into a single memory per customer — so Ella, your
+              Phone, Zoom, Teams, Google Meet, and in-person all flow into a single memory per customer — so Remi, your
               team, and the Brain never miss a detail or a promise.
             </p>
           </div>

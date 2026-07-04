@@ -25,7 +25,7 @@ export function ask(qRaw: string): Answer {
     return {
       text:
         `Two accounts need attention right now.\n\n` +
-        `• **${ns.name}** (${usd(ns.ytdRevenue)} YTD, owned by ${ns.owner}) — flagged **risk**. Ella logged a negative re-bid call yesterday after two May delivery misses, and procurement is re-bidding 3 lanes. There's no save proposal sent yet. This is the priority.\n\n` +
+        `• **${ns.name}** (${usd(ns.ytdRevenue)} YTD, owned by ${ns.owner}) — flagged **risk**. Remi logged a negative re-bid call yesterday after two May delivery misses, and procurement is re-bidding 3 lanes. There's no save proposal sent yet. This is the priority.\n\n` +
         `• **${wv.name}** (${usd(wv.ytdRevenue)} YTD, ${wv.owner}) — flagged **watch**. A late flatbed (M-80422) drew an angry call this morning; they escalate fast and are Net-45. Confirm the revised ETA and comp the detention today.\n\n` +
         `Everyone else is green.`,
       sources: [
@@ -41,7 +41,7 @@ export function ask(qRaw: string): Answer {
     return {
       text:
         `**Westview Building Co.** — $880K YTD, owned by Marcus Vance, currently **watch**.\n\n` +
-        `Live picture: load **M-80422** (Birmingham → Charlotte, flatbed) is **running late**, ETA now ~3:40 PM. Karen Liu called at 9:12 AM — the crane crew is on the clock and she wants it there by 2 PM or there's a penalty. Ella opened a follow-up: confirm the revised ETA and comp the detention.\n\n` +
+        `Live picture: load **M-80422** (Birmingham → Charlotte, flatbed) is **running late**, ETA now ~3:40 PM. Karen Liu called at 9:12 AM — the crane crew is on the clock and she wants it there by 2 PM or there's a penalty. Remi opened a follow-up: confirm the revised ETA and comp the detention.\n\n` +
         `Money angle: the load carries ${usd(2950)} revenue / ${usd(770)} margin. If we comp detention it trims Marcus's payable margin this week, which Commissions will reflect automatically. Recommend: call Karen now, then send the goodwill credit.`,
       sources: [
         { module: "Ella", label: "Westview call V-2041 (negative, 6 min)" },
@@ -58,7 +58,7 @@ export function ask(qRaw: string): Answer {
       text:
         `This week's run (ending ${COMMISSION_RUN.weekEnding}): **${usd(COMMISSION_RUN.readyToPay)} ready** across ${COMMISSION_RUN.people} payees, ${COMMISSION_RUN.loadsImported} loads imported.\n\n${lines}\n\n` +
         `**Why the holds:** ${COMMISSION_RUN.blockerNote} ${COMMISSION_RUN.warningNote}\n\n` +
-        `Note both holds trace back to live events — a load that still needs cover (from Ella's Bluepeak call) and a pending service credit. Clear those two and the run settles to the penny.`,
+        `Note both holds trace back to live events — a load that still needs cover (from Remi's Bluepeak call) and a pending service credit. Clear those two and the run settles to the penny.`,
       sources: [
         { module: "Commissions", label: "Pay run — week ending Jun 26" },
         { module: "Logistics", label: "Load M-80511 needs cover (no carrier cost)" },
@@ -99,7 +99,7 @@ export function ask(qRaw: string): Answer {
   // fallback — still demonstrates the cross-system framing
   return {
     text:
-      `I read across all five systems — Conversations (Ella), Operations, Commissions, and Analytics — to answer that.\n\n` +
+      `I read across all five systems — Conversations (Remi), Operations, Commissions, and Analytics — to answer that.\n\n` +
       `Right now the live picture: ${usd(COMMISSION_RUN.readyToPay)} is ready to pay this week, ${LOADS.filter((l) => l.status === "Running late" || l.status === "Needs cover").length} loads need attention, and ${CUSTOMERS.filter((c) => c.health !== "good").length} accounts are flagged. Try one of the suggested questions, or ask about a specific customer, load, or payee — I'll join the data for you.`,
     sources: [
       { module: "Logistics", label: "Live load board" },

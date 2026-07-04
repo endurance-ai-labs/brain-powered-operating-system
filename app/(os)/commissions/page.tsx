@@ -94,7 +94,7 @@ export default function CommissionsPage() {
       <div className="callout" style={{ marginTop: 18 }}>
         <p>
           <strong>Synchronized:</strong> both holds above trace back to live events in other systems — a load that still
-          needs cover (opened from Ella&apos;s Bluepeak call) and a pending Northstar service credit. Resolve them there and
+          needs cover (opened from Remi&apos;s Bluepeak call) and a pending Northstar service credit. Resolve them there and
           this run settles itself.
         </p>
       </div>
