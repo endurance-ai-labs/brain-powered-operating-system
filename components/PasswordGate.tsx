@@ -5,8 +5,8 @@ import { asset } from "@/lib/base";
 
 // SHA-256 of the access password. Change the password by replacing this hash
 // (compute with: node -e "console.log(require('crypto').createHash('sha256').update('NEWPASS').digest('hex'))").
-// Current password: onebrain
-const HASH = "dca5e92fc4c3d7d6080cfde42b960fd87d1ecf5a0a71bfa448ff00631d3d86be";
+// Current password: BPOS
+const HASH = "f09c4bb36ede0dff3e3aac1c48a8d71ceed3cf41501fb1bcc9bd0992c64c4e94";
 const KEY = "bpos_unlocked";
 
 async function sha256(s: string) {
