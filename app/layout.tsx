@@ -15,9 +15,13 @@ export const metadata: Metadata = {
     siteName: "Endurance AI Labs",
   },
   icons: {
-    icon:
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23121829'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23C7A76C' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23C7A76C'/%3E%3C/svg%3E",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
